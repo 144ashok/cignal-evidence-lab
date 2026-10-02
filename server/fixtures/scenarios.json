@@ -1,8 +1,8 @@
 [
   {
     "id": "confirmed-mismatch",
-    "label": "Confirmed name mismatch",
-    "description": "Confirmed name mismatch",
+    "label": "Legal Record Updated, Managed Services Not Updated",
+    "description": "The legal name change is complete and has taken effect. Managed Services still uses the previous name, which is needed for upcoming work. No correction activity exists.",
     "series": "confirmed-mismatch",
     "expectedStatus": "READY_FOR_REVIEW",
     "expectedDisposition": "CREATE",
@@ -62,12 +62,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "01",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "already-current",
-    "label": "Managed Services already current",
-    "description": "Managed Services already current",
+    "label": "Managed Services Already Updated",
+    "description": "The verified Managed Services record already contains Demo Entity Beta LLC, matching the current legal record.",
     "series": "already-current",
     "expectedStatus": "NO_CURRENT_FINDING",
     "expectedDisposition": "NO_NEW_NOTIFICATION",
@@ -127,12 +131,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "02",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "field-not-consumed",
-    "label": "Workflow does not consume field",
-    "description": "Workflow does not consume field",
+    "label": "Change Does Not Affect Upcoming Work",
+    "description": "Managed Services still uses the previous name, but upcoming work does not depend on it. No current operational finding is supported.",
     "series": "field-not-consumed",
     "expectedStatus": "NO_CURRENT_FINDING",
     "expectedDisposition": "NO_NEW_NOTIFICATION",
@@ -190,12 +198,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "03",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "service-ended",
-    "label": "Relevant service ended",
-    "description": "Relevant service ended",
+    "label": "Managed Service No Longer Active",
+    "description": "The Managed Service is no longer active. This review covers the service's upcoming work, not any separate legal obligations.",
     "series": "service-ended",
     "expectedStatus": "NO_CURRENT_FINDING",
     "expectedDisposition": "NO_NEW_NOTIFICATION",
@@ -255,12 +267,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "04",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "change-cancelled",
-    "label": "Legal change cancelled",
-    "description": "Legal change cancelled",
+    "label": "Legal Change Cancelled",
+    "description": "The legal change was cancelled. It does not support a request to update the Managed Services record.",
     "series": "change-cancelled",
     "expectedStatus": "NO_CURRENT_FINDING",
     "expectedDisposition": "NO_NEW_NOTIFICATION",
@@ -320,12 +336,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "05a",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "never-effective",
-    "label": "Change never effective",
-    "description": "Change never effective",
+    "label": "Legal Change Never Took Effect",
+    "description": "The legal change had not taken effect as of the review date.",
     "series": "never-effective",
     "expectedStatus": "NO_CURRENT_FINDING",
     "expectedDisposition": "NO_NEW_NOTIFICATION",
@@ -385,7 +405,11 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "05b",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "future-effective",
@@ -450,12 +474,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "missing-new-value",
-    "label": "Required new value unknown",
-    "description": "Required new value unknown",
+    "label": "Current Legal Value Missing",
+    "description": "The current legal name is missing. Confirm it before comparing the legal and Managed Services records.",
     "series": "missing-new-value",
     "expectedStatus": "NEEDS_EVIDENCE",
     "expectedDisposition": "CREATE",
@@ -515,12 +543,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "06a",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "missing-completion-evidence",
-    "label": "Completion evidence missing",
-    "description": "Completion evidence missing",
+    "label": "Legal Change Cannot Be Verified",
+    "description": "Evidence confirming that the legal change was completed is missing. The stated change status alone is insufficient.",
     "series": "missing-completion-evidence",
     "expectedStatus": "NEEDS_EVIDENCE",
     "expectedDisposition": "CREATE",
@@ -580,12 +612,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "06b",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "identity-mismatch",
-    "label": "Source entity identifiers disagree",
-    "description": "Source entity identifiers disagree",
+    "label": "Entity Match Cannot Be Confirmed",
+    "description": "The Managed Services record refers to a different legal entity. Similar names alone cannot confirm that the records belong to the same entity.",
     "series": "identity-mismatch",
     "expectedStatus": "NEEDS_EVIDENCE",
     "expectedDisposition": "CREATE",
@@ -645,12 +681,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "07",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "stale-evidence",
-    "label": "Evidence explicitly stale",
-    "description": "Evidence explicitly stale",
+    "label": "Available Evidence Is Outdated",
+    "description": "The supplied legal record evidence is marked as outdated. Obtain current evidence before relying on it.",
     "series": "stale-evidence",
     "expectedStatus": "NEEDS_EVIDENCE",
     "expectedDisposition": "CREATE",
@@ -710,12 +750,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "08a",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "conflicting-evidence",
-    "label": "Evidence explicitly conflicting",
-    "description": "Evidence explicitly conflicting",
+    "label": "Sources Contain Conflicting Information",
+    "description": "The supplied Managed Services evidence is marked as conflicting. Confirm the correct information before deciding whether a correction is needed.",
     "series": "conflicting-evidence",
     "expectedStatus": "NEEDS_EVIDENCE",
     "expectedDisposition": "CREATE",
@@ -775,7 +819,11 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "08b",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "unverified-evidence",
@@ -840,7 +888,11 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "unknown-service",
@@ -905,12 +957,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "pending-owned-task",
-    "label": "Matching owned task on track",
-    "description": "Matching owned task on track",
+    "label": "Correction Already In Progress",
+    "description": "An assigned owner is responsible for correcting this entity's name, with completion planned before upcoming work begins. The records still differ; monitor the existing correction.",
     "series": "task-lifecycle",
     "expectedStatus": "MONITOR_EXISTING_WORK",
     "expectedDisposition": "CREATE",
@@ -970,12 +1026,16 @@
         "plannedCompletionAt": "2026-10-03T00:00:00Z"
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "09",
+    "showInSelector": true,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "overdue-task",
-    "label": "Task overdue and mismatch remains",
-    "description": "Task overdue and mismatch remains",
+    "label": "Correction Delayed, Review Needed",
+    "description": "The planned correction date has passed, and Managed Services still uses the previous name. Follow up with the assigned owner.",
     "series": "task-lifecycle",
     "expectedStatus": "READY_FOR_REVIEW",
     "expectedDisposition": "UPDATE",
@@ -1035,7 +1095,13 @@
         "plannedCompletionAt": "2026-10-03T00:00:00Z"
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "10",
+    "showInSelector": true,
+    "setupFixtureIds": [
+      "pending-owned-task"
+    ],
+    "setupNote": "This scenario includes an earlier finding from when the correction was on track. The review updates that finding."
   },
   {
     "id": "task-correction-verified",
@@ -1100,7 +1166,11 @@
         "plannedCompletionAt": "2026-10-03T00:00:00Z"
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "replay-original",
@@ -1165,12 +1235,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "replay-identical",
-    "label": "Identical facts replayed",
-    "description": "Identical facts replayed",
+    "label": "Previously Reviewed Situation",
+    "description": "These facts have already been reviewed and remain unchanged. The existing finding is retained without a duplicate notification.",
     "series": "replay",
     "expectedStatus": "READY_FOR_REVIEW",
     "expectedDisposition": "NO_NEW_NOTIFICATION",
@@ -1230,12 +1304,18 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "11",
+    "showInSelector": true,
+    "setupFixtureIds": [
+      "replay-original"
+    ],
+    "setupNote": "This scenario includes the earlier finding so you can see how a repeated review is handled."
   },
   {
     "id": "replay-corrected",
-    "label": "New snapshot resolves earlier finding",
-    "description": "New snapshot resolves earlier finding",
+    "label": "Managed Services Record Corrected",
+    "description": "Newer verified evidence confirms that Managed Services now uses the current name. The earlier finding is marked as no longer current, and the evidence history is retained.",
     "series": "replay",
     "expectedStatus": "NO_CURRENT_FINDING",
     "expectedDisposition": "UPDATE",
@@ -1295,7 +1375,13 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "12",
+    "showInSelector": true,
+    "setupFixtureIds": [
+      "replay-original"
+    ],
+    "setupNote": "This scenario includes the earlier finding about the previous name. The review records the correction against that finding."
   },
   {
     "id": "replay-resolved-again",
@@ -1360,12 +1446,16 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "similar-name-other-entity",
-    "label": "Similarly named different entity is current",
-    "description": "Similarly named different entity is current",
+    "label": "Similar Entity, No Issue Found",
+    "description": "A different legal entity with a similar name already has the correct Managed Services record. The other entity's finding does not apply to it.",
     "series": "replay",
     "expectedStatus": "NO_CURRENT_FINDING",
     "expectedDisposition": "NO_NEW_NOTIFICATION",
@@ -1425,7 +1515,13 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": "Negative identity test",
+    "showInSelector": true,
+    "setupFixtureIds": [
+      "replay-original"
+    ],
+    "setupNote": "The other entity's finding remains in the history. This review concerns only the selected legal entity."
   },
   {
     "id": "task-unrelated",
@@ -1490,7 +1586,11 @@
         "plannedCompletionAt": "2026-10-03T00:00:00Z"
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "task-unowned",
@@ -1555,7 +1655,11 @@
         "plannedCompletionAt": "2026-10-03T00:00:00Z"
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "task-completed-still-stale",
@@ -1620,7 +1724,11 @@
         "plannedCompletionAt": "2026-10-03T00:00:00Z"
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "task-after-preparation",
@@ -1685,7 +1793,11 @@
         "plannedCompletionAt": "2026-10-09T00:00:00Z"
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "future-observation",
@@ -1750,7 +1862,11 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   },
   {
     "id": "batch-second-entity",
@@ -1815,6 +1931,10 @@
         "plannedCompletionAt": null
       },
       "priorFindingId": null
-    }
+    },
+    "briefCase": null,
+    "showInSelector": false,
+    "setupFixtureIds": [],
+    "setupNote": ""
   }
 ]

@@ -3,7 +3,7 @@ export default function AppFooter() {
     <footer>
       <span><span className="local-dot" /> Evidence in. Explainable findings out.</span>
       <span>
-        Standalone experiment <b>·</b> No database <b>·</b> No external APIs <b>·</b> Not production software
+        Illustrative scenarios <b>·</b> Human review required <b>·</b> Source records remain unchanged
       </span>
     </footer>
   );

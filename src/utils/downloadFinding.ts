@@ -5,7 +5,7 @@ export function downloadFinding(result: Result): void {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.download = `${result.findingId ?? result.fixtureId ?? 'evaluation'}.json`;
+  link.download = `${result.findingId ?? result.fixtureId ?? 'review'}.json`;
   link.click();
   URL.revokeObjectURL(url);
 }

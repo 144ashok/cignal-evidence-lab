@@ -9,7 +9,7 @@ export default function AppHeader() {
         </strong>
       </a>
       <div className="header-right">
-        <span className="local-dot" /> Local environment
+        <span className="local-dot" /> Advisor workspace
         <span className="prototype">PROTOTYPE</span>
       </div>
     </header>

@@ -10,6 +10,8 @@ import InputFactsPanel from './components/InputFactsPanel';
 import EvaluationPanel from './components/EvaluationPanel';
 import FindingPanel from './components/FindingPanel';
 import AppFooter from './components/AppFooter';
+import { displayEntity, displayInformation } from './presentation/displayLabels';
+import { statusPresentation } from './config/statusPresentation';
 
 export default function App() {
   const { state: factOptions, retry } = useFactOptions();
@@ -18,26 +20,38 @@ export default function App() {
   const [input, setInput] = useState<EvaluationInput | null>(null);
   const [result, setResult] = useState<Result | null>(null);
   const [history, setHistory] = useState<Result[]>([]);
-  const [evaluationCount, setEvaluationCount] = useState(0);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [loadAttempt, setLoadAttempt] = useState(0);
+  const [historyLoading, setHistoryLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
     setError('');
-    Promise.all([fetchScenarios(controller.signal), fetchFindings()])
-      .then(([fixtures, findings]) => {
+    fetchScenarios(controller.signal)
+      .then(allFixtures => {
         if (controller.signal.aborted) return;
-        if (!fixtures.length) throw new Error('No local fixtures are available.');
+        const fixtures = allFixtures.filter(fixture => fixture.showInSelector);
+        if (!fixtures.length) throw new Error('No scenarios are available.');
         setScenarios(fixtures);
         setScenarioId(fixtures[0].id);
         setInput(structuredClone(fixtures[0].input));
-        setHistory(findings);
       })
       .catch(cause => { if (!controller.signal.aborted) setError(String(cause.message)); });
     return () => controller.abort();
   }, [loadAttempt]);
+
+  useEffect(() => {
+    if (!scenarioId) return;
+    const controller = new AbortController();
+    setHistoryLoading(true);
+    setHistory([]);
+    fetchFindings(scenarioId, controller.signal)
+      .then(findings => { if (!controller.signal.aborted) setHistory(findings); })
+      .catch(() => { if (!controller.signal.aborted) setError('Could not load this scenario’s finding history.'); })
+      .finally(() => { if (!controller.signal.aborted) setHistoryLoading(false); });
+    return () => controller.abort();
+  }, [scenarioId, loadAttempt]);
 
   const selectedScenario = scenarios.find(scenario => scenario.id === scenarioId);
   const hasPendingChanges = result !== null && JSON.stringify(input) !== JSON.stringify(result.input);
@@ -47,6 +61,8 @@ export default function App() {
     if (!scenario) return;
     setScenarioId(id);
     setInput(structuredClone(scenario.input));
+    setResult(null);
+    setError('');
   }
 
   async function runEvaluation() {
@@ -54,13 +70,12 @@ export default function App() {
     setBusy(true);
     setError('');
     try {
-      const next = await evaluateInput(input);
+      const next = await evaluateInput(input, scenarioId);
       setResult(next);
       setInput(next.input);
-      setEvaluationCount(count => count + 1);
-      setHistory(await fetchFindings());
+      setHistory(await fetchFindings(scenarioId));
     } catch {
-      setError('Evaluation could not complete. Check that the local Node server is running, then try again.');
+      setError('The review could not be completed. Check your connection and try again.');
     } finally {
       setBusy(false);
     }
@@ -70,12 +85,11 @@ export default function App() {
     setBusy(true);
     setError('');
     try {
-      await resetFindings();
+      await resetFindings(scenarioId);
       setHistory([]);
       setResult(null);
-      setEvaluationCount(0);
     } catch {
-      setError('Local finding history could not be reset.');
+      setError('This scenario’s finding history could not be reset. Please try again.');
     } finally { setBusy(false); }
   }
 
@@ -92,25 +106,32 @@ export default function App() {
         )}
         <div className="panels">
           {factOptions.status === 'ready' && input ? (
-            <InputFactsPanel input={input} options={factOptions.options} onInputChange={setInput} onEvaluate={runEvaluation} busy={busy} />
+            <InputFactsPanel input={input} options={factOptions.options} onInputChange={setInput} onEvaluate={runEvaluation} busy={busy || historyLoading} />
           ) : (
             <section className="panel"><div className="panel-body">
-              {factOptions.status === 'error' ? <><p role="alert">{factOptions.message}</p><button onClick={retry}>Retry options</button></> : <p role="status">Loading local fixtures and options…</p>}
+              {factOptions.status === 'error' ? <><p role="alert">{factOptions.message}</p><button onClick={retry}>Try again</button></> : <p role="status">Loading scenarios and review options…</p>}
             </div></section>
           )}
           {result ? <>
-            <EvaluationPanel result={result} evaluationCount={evaluationCount} hasPendingChanges={hasPendingChanges} />
+            <EvaluationPanel result={result} hasPendingChanges={hasPendingChanges} />
             <FindingPanel result={result} onDownload={() => downloadFinding(result)} />
           </> : <>
-            <section className="panel"><div className="panel-heading"><h2>CIGNAL evaluation</h2></div><div className="panel-body">Run an evaluation to inspect the observable checks.</div></section>
-            <section className="panel"><div className="panel-heading"><h2>Finding</h2></div><div className="panel-body"><p>No evaluation yet.</p><code>customer_communication_authorized = false</code><br /><code>source_record_write_authorized = false</code></div></section>
+            <EvaluationPanel result={null} hasPendingChanges={false} />
+            <section className="panel"><div className="panel-heading"><h2>Finding</h2></div><div className="panel-body"><p>No review yet.</p><code>customer_communication_authorized = false</code><br /><code>source_record_write_authorized = false</code></div></section>
           </>}
         </div>
         <section className="panel history-panel">
-          <div className="panel-heading"><h2>Local finding history ({history.length})</h2><button className="reset" onClick={resetHistory} disabled={busy}>Reset local finding state</button></div>
+          <div className="panel-heading"><h2>Selected scenario history ({history.length})</h2><button className="reset" onClick={resetHistory} disabled={busy || historyLoading}>Reset this scenario’s history</button></div>
           <div className="panel-body">
-            <p>Run the same facts again to inspect duplicate suppression. Use a newer snapshot to update the same finding. Independent scenarios share this interactive history; reset it to start a separate experiment.</p>
-            {history.length === 0 ? <p>No findings recorded.</p> : <div className="table-scroll"><table><thead><tr><th>Finding</th><th>Entity</th><th>Field</th><th>Outcome</th><th>Revision</th><th>Current</th></tr></thead><tbody>{history.map(item => <tr key={item.findingId}><td>{item.findingId}</td><td>{item.entityId}</td><td>{item.changedField}</td><td>{item.status}</td><td>{item.revision}</td><td>{item.isCurrent ? 'Yes' : 'No'}</td></tr>)}</tbody></table></div>}
+            <p>Previous findings for this scenario are retained here. Updated evidence is reviewed against the existing finding, keeping the review history together.</p>
+            {history.length === 0 ? <p>No findings recorded.</p> : <div className="table-scroll"><table>
+              <thead><tr><th>Finding</th><th>Legal Entity</th><th>Information Reviewed</th><th>Outcome</th><th>Update</th><th>Current</th></tr></thead>
+              <tbody>{history.map(item => <tr key={item.findingId}>
+                <td><details><summary>Legal change review</summary><code>{item.findingId}</code></details></td>
+                <td>{displayEntity(item.entityId)}</td><td>{displayInformation(item.changedField)}</td>
+                <td>{statusPresentation[item.status].label}</td><td>{item.revision}</td><td>{item.isCurrent ? 'Yes' : 'No'}</td>
+              </tr>)}</tbody>
+            </table></div>}
           </div>
         </section>
         <AppFooter />

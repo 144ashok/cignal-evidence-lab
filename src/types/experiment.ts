@@ -106,4 +106,8 @@ export interface Scenario {
   expectedStatus: Status;
   expectedDisposition: Result['emissionDisposition'];
   input: EvaluationInput;
+  briefCase: string | null;
+  showInSelector: boolean;
+  setupFixtureIds: string[];
+  setupNote: string;
 }

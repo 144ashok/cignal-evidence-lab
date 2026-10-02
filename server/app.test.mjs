@@ -79,3 +79,37 @@ test('malformed request is rejected; unknown structured facts produce NEEDS_EVID
   assert.equal(unknown.status, 200);
   assert.equal((await unknown.json()).status, 'NEEDS_EVIDENCE');
 });
+
+test('all selectable brief cases evaluate correctly in isolation, with required prior facts', async () => {
+  const scenarios = await (await fetch(`${baseUrl}/api/scenarios`)).json();
+  const visible = scenarios.filter(scenario => scenario.showInSelector);
+  assert.equal(visible.length, 16);
+  for (const scenario of visible) {
+    const path = `${baseUrl}/api/evaluate?scenario=${encodeURIComponent(scenario.id)}`;
+    const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(scenario.input) };
+    const response = await fetch(path, options);
+    assert.equal(response.status, 200, scenario.id);
+    const result = await response.json();
+    assert.equal(result.status, scenario.expectedStatus, scenario.id);
+    assert.equal(result.emissionDisposition, scenario.expectedDisposition, scenario.id);
+    const replay = await (await fetch(path, options)).json();
+    assert.equal(replay.findingId, result.findingId, scenario.id);
+    assert.equal(replay.emissionDisposition, 'NO_NEW_NOTIFICATION', scenario.id);
+    if (scenario.id === 'similar-name-other-entity') {
+      assert.equal(result.findingId, null);
+      const history = await (await fetch(`${baseUrl}/api/findings?scenario=${scenario.id}`)).json();
+      assert.equal(history.length, 1);
+      assert.equal(history[0].entityId, 'DEMO-E001');
+    }
+  }
+  const reset = await fetch(`${baseUrl}/api/reset?scenario=confirmed-mismatch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+  assert.equal(reset.status, 200);
+  assert.deepEqual(await (await fetch(`${baseUrl}/api/findings?scenario=confirmed-mismatch`)).json(), []);
+  const pendingHistory = await (await fetch(`${baseUrl}/api/findings?scenario=pending-owned-task`)).json();
+  assert.equal(pendingHistory.length, 1, 'Reset must not clear another scenario’s findings');
+});
+
+test('unknown scenario context cannot select a state file', async () => {
+  const response = await fetch(`${baseUrl}/api/findings?scenario=..%2Funknown`);
+  assert.equal(response.status, 400);
+});

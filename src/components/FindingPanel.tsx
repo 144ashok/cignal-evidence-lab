@@ -1,95 +1,79 @@
-import type { Result } from '../engine';
-import { statusPresentation } from '../config/statusPresentation';
+import type { Result } from '../types/experiment';
+import { businessText, displayTime, presentFinding } from '../presentation/findingPresentation';
+import { displayDisposition, displayEntity, displayEvidenceQuality, displayEvidenceSource, displayInformation, displayWorkflow } from '../presentation/displayLabels';
+import OutcomeStatusCard from './OutcomeStatusCard';
 
-interface FindingPanelProps {
-  result: Result;
-  onDownload: () => void;
-}
+interface FindingPanelProps { result: Result; onDownload: () => void }
 
 export default function FindingPanel({ result, onDownload }: FindingPanelProps) {
+  const view = presentFinding(result);
   const { input } = result;
-  const serviceValueCurrent = Boolean(input.change.newValue && input.managedServices.value === input.change.newValue);
-
   return (
     <section className="panel finding-panel">
       <div className="panel-heading">
-        <span className="step">03</span>
-        <h2>Finding</h2>
-        <button
-          className="export"
-          onClick={onDownload}
-          title="Download evaluated finding as JSON"
-          aria-label="Download evaluated finding as JSON"
-        >↓</button>
+        <span className="step">03</span><h2>Finding</h2>
+        <button className="export" onClick={onDownload} title="Download finding" aria-label="Download finding">↓</button>
       </div>
-      <div className="panel-body">
-        <div className="finding-meta">
-          <span className="section-label">
-            {result.status === 'NO_CURRENT_FINDING' ? 'EVALUATION ID' : 'FINDING ID'}
-          </span>
-          <code>{result.findingId ?? 'No logical finding created'}</code>
-        </div>
-        <span className={`status-badge ${result.status.toLowerCase()}`}>
-          {statusPresentation[result.status].label}
-        </span>
+      <div className="panel-body finding-body">
+        <OutcomeStatusCard status={result.status} explanation={view.explanation} />
 
-        <div className="section-label spaced">EMISSION & LINKAGE</div>
-        <code>{result.emissionDisposition}</code>
-        <p className="explanation">Revision {result.revision} · Current: {result.isCurrent ? 'yes' : 'no'}</p>
-        <p className="explanation">Earlier finding: {result.links.priorFindingId ?? 'none'}<br />Task: {result.links.taskId ?? 'none'}</p>
-        <div className="section-label spaced">WORKFLOW</div>
-        <p className="explanation">{result.workflow.id ?? 'Unknown'}<br />Preparation: {result.workflow.preparationAt ?? 'Unknown'}</p>
+        <section className="finding-section why-section">
+          <h3>Why This Finding Exists</h3>
+          <p>{view.decisiveReason}</p>
+          {result.status === 'NO_CURRENT_FINDING' && <p className="section-context">This review does not support a current finding.</p>}
+        </section>
 
-        <div className="section-label spaced">REASON CODE</div>
-        <code className="reason">{result.reason}</code>
-        <div className="section-label spaced">BUSINESS EXPLANATION</div>
-        <p className="explanation">{result.explanation}</p>
+        <section className={`record-comparison comparison--${view.comparison.tone}`} aria-labelledby="compared-records-title">
+          <h3 id="compared-records-title">What Was Compared</h3>
+          <strong className="comparison-state">{view.comparison.label}</strong>
+          <dl>
+            <div><dt>Legal entity</dt><dd>{displayEntity(input.entityId)}</dd></div>
+            <div><dt>Current legal information</dt><dd>{input.change.newValue ?? 'Not available'}</dd></div>
+            <div><dt>Legal record</dt><dd>{input.legalRecord.value ?? 'Not available'}</dd></div>
+            <div><dt>Managed Services record</dt><dd>{input.managedServices.value ?? 'Not available'}</dd></div>
+          </dl>
+          <p>{view.comparison.detail}</p>
+        </section>
 
-        <div className="section-label spaced">COMPARED FACTS</div>
-        <div className="comparison">
-          <div>
-            <span>Legal record</span>
-            <strong>{input.legalRecord.value ?? 'Unknown'}</strong>
-            <small>Expected · new value: {input.change.newValue ?? 'Unknown'}</small>
-          </div>
-          <div className={serviceValueCurrent ? '' : 'mismatch'}>
-            <span>Managed Services <b>{serviceValueCurrent ? 'ALIGNED' : 'MISMATCH'}</b></span>
-            <strong>{input.managedServices.value ?? 'Unknown'}</strong>
-          </div>
-        </div>
+        <section className="finding-section evidence-support">
+          <h3>What Evidence Supports It</h3>
+          <p className="section-context">Records supporting this review, with their evidence confidence. Original references are available in the details below.</p>
+          {view.evidence.length ? <ul className="supporting-records">{view.evidence.map(item => (
+            <li key={`${item.source}:${item.reference}`}>
+              <div className="evidence-heading"><strong>{displayEvidenceSource(item.source)}</strong><span className={item.needsReview ? 'evidence-review' : 'evidence-provided'}>{item.needsReview ? 'Needs review' : 'Confirmed'}</span></div>
+              <p>{item.source === 'Workflow dependency' ? displayInformation(item.value) : item.value ?? 'Information not available'}</p>
+              <p className="evidence-meta">Legal entity: {displayEntity(item.entityId)}</p>
+              {item.observedAt && <p className="evidence-meta">Recorded: {displayTime(item.observedAt)}</p>}
+              {item.quality && <p className="evidence-meta">Evidence confidence: {displayEvidenceQuality(item.quality)}</p>}
+              <details className="evidence-reference"><summary>Evidence reference</summary>
+                <p className="evidence-meta">{item.source === 'Legal completion' ? 'Legal change reference' : item.source === 'Workflow dependency' ? 'Workflow reference' : 'Evidence update reference'}: {item.version ?? 'Not available'}</p>
+                <code>{item.reference}</code>
+              </details>
+            </li>
+          ))}</ul> : <p>No supporting references are available.</p>}
+        </section>
 
-        <div className="section-label spaced">
-          EVIDENCE REFERENCES <span className="count">{result.evidence.length}</span>
-        </div>
-        <div className="evidence-list">
-          {result.evidence.map(evidence => (
-            <details key={`${evidence.source}:${evidence.reference}`}>
-              <summary>
-                <span className="document-icon">▤</span>
-                <span>{evidence.source}<code>{evidence.reference}</code></span>
-                <span className="evidence-arrow">↗</span>
-              </summary>
-              <p>Entity: {evidence.entityId ?? 'unknown'} · Version: {evidence.version ?? 'not supplied'}<br />Time: {evidence.observedAt ?? 'not applicable'}<br />Quality: {evidence.quality ?? 'supplied dependency'}<br />Value: {evidence.value ?? 'unknown'}</p>
-            </details>
-          ))}
-        </div>
+        <section className={`finding-section evidence-gaps ${view.gaps.length ? 'has-gaps' : ''}`}>
+          <h3>What Evidence Is Missing</h3>
+          {view.gaps.length ? <><p className="section-context">Missing, disputed or unverified information:</p><ul>{view.gaps.map(gap => <li key={gap}>{gap}</li>)}</ul></> : <p>No required evidence is missing or disputed in this review.</p>}
+        </section>
 
-        {result.unresolvedInformation.length > 0 && <div className="unresolved"><div className="section-label spaced">UNRESOLVED INFORMATION</div><ul>{result.unresolvedInformation.map(item => <li key={item}>{item}</li>)}</ul></div>}
-        <details className="assumptions"><summary>Retained evidence history ({result.evidenceHistory.length})</summary>{result.evidenceHistory.map((item, index) => <p key={index}>{item.source} · {item.version}<br />{item.reference}<br />{item.observedAt} · {item.value}</p>)}</details>
+        <section className="finding-section human-action">
+          <h3>Human Action Required</h3><p>{view.action}</p>
+          <p className="section-context">Proposed owner: {businessText(result.owner)}</p>
+        </section>
+        <section className="finding-section expected-next-step">
+          <h3>Expected Next Step</h3><p>{view.nextStep}</p>
+          <dl className="workflow-context"><div><dt>Upcoming work</dt><dd>{displayWorkflow(result.workflow.id)}</dd></div><div><dt>Workflow preparation</dt><dd>{displayTime(result.workflow.preparationAt)}</dd></div>{result.links.taskId && <div><dt>Planned correction date</dt><dd>{displayTime(input.updateTask.plannedCompletionAt)}</dd></div>}</dl>
+        </section>
 
-        <div className="owner">
-          <span className="avatar">MS</span>
-          <div><span>ASSIGNED OWNER</span><strong>{result.owner}</strong></div>
-        </div>
-        <div className="action">
-          <div className="section-label">↗ RECOMMENDED HUMAN ACTION</div>
-          <p>{result.action}</p>
-        </div>
-        <div className="guardrails">
-          <div>⌑ <strong>Human authorization required</strong></div>
-          <code>customer_communication_authorized = false</code>
-          <code>source_record_write_authorized = false</code>
-        </div>
+        <details className="finding-audit-details">
+          <summary>Finding References and Evidence History</summary>
+          <dl><div><dt>Finding reference</dt><dd>{result.findingId ?? 'No finding created'}</dd></div><div><dt>Reason reference</dt><dd>{result.reason}</dd></div><div><dt>Scenario reference</dt><dd>{result.fixtureId}</dd></div><div><dt>Legal entity reference</dt><dd>{result.entityId}</dd></div><div><dt>Information reviewed</dt><dd>{displayInformation(result.changedField)}</dd></div><div><dt>Workflow reference</dt><dd>{result.workflow.id}</dd></div><div><dt>Finding update</dt><dd>{displayDisposition(result.emissionDisposition)}</dd></div><div><dt>Update / current</dt><dd>{result.revision} / {result.isCurrent ? 'Yes' : 'No'}</dd></div><div><dt>Earlier finding reference</dt><dd>{result.links.priorFindingId ?? 'None'}</dd></div><div><dt>Existing correction reference</dt><dd>{result.links.taskId ?? 'None'}</dd></div></dl>
+          <h4>Retained evidence ({result.evidenceHistory.length})</h4>
+          <ul>{result.evidenceHistory.map((item, index) => <li key={index}>{displayEvidenceSource(item.source)} · {item.version}<br /><code>{item.reference}</code><br />{displayTime(item.observedAt)} · {item.source === 'Workflow dependency' ? displayInformation(item.value) : item.value}</li>)}</ul>
+        </details>
+        <div className="guardrails"><div><strong>Human authorization required</strong></div><code>customer_communication_authorized = false</code><code>source_record_write_authorized = false</code></div>
       </div>
     </section>
   );

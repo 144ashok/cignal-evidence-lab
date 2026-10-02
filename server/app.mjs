@@ -46,6 +46,25 @@ async function readJsonBody(request) {
 
 export async function createApp({ development = false, stateFile = resolve(projectRoot, 'state/findings.json') } = {}) {
   const store = createFindingStore(stateFile);
+  const scenarioStores = new Map();
+  async function evaluationContext(url) {
+    const id = url.searchParams.get('scenario');
+    if (!id) return { store, setupInputs: [] };
+    const scenarios = JSON.parse(await readFile(scenariosFile, 'utf8'));
+    const scenario = scenarios.find(item => item.id === id && item.showInSelector);
+    if (!scenario) throw Object.assign(new Error('Unknown brief scenario.'), { status: 400 });
+    // Every selectable case has its own experiment history. Required prior facts
+    // are supplied explicitly by fixtures, without reusing another case's edits.
+    if (!scenarioStores.has(id)) scenarioStores.set(id, createFindingStore(resolve(dirname(stateFile), 'scenarios', `${id}.json`)));
+    return {
+      store: scenarioStores.get(id),
+      setupInputs: scenario.setupFixtureIds.map(setupId => {
+        const prerequisite = scenarios.find(item => item.id === setupId);
+        if (!prerequisite) throw new Error(`Missing setup fixture: ${setupId}`);
+        return prerequisite.input;
+      }),
+    };
+  }
   const server = createServer();
   // Vite is development middleware only; Node owns both the API and HTTP port.
   const vite = development
@@ -58,14 +77,16 @@ export async function createApp({ development = false, stateFile = resolve(proje
 
   server.on('request', async (request, response) => {
     try {
-      const pathname = new URL(request.url, 'http://localhost').pathname;
+      const url = new URL(request.url, 'http://localhost');
+      const pathname = url.pathname;
       if (pathname === '/api/evaluate' && request.method === 'POST') {
-        sendJson(response, 200, await store.evaluate(await readJsonBody(request)));
+        const context = await evaluationContext(url);
+        sendJson(response, 200, await context.store.evaluate(await readJsonBody(request), context.setupInputs));
         return;
       }
       if (pathname === '/api/reset' && request.method === 'POST') {
         await readJsonBody(request);
-        await store.reset();
+        await (await evaluationContext(url)).store.reset();
         sendJson(response, 200, { reset: true });
         return;
       }
@@ -85,7 +106,7 @@ export async function createApp({ development = false, stateFile = resolve(proje
         return;
       }
       if (pathname === '/api/findings') {
-        sendJson(response, 200, await store.list());
+        sendJson(response, 200, await (await evaluationContext(url)).store.list());
         return;
       }
       if (pathname === '/api' || pathname.startsWith('/api/')) {

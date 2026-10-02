@@ -2,24 +2,36 @@
   "completionStatusOptions": [
     { "value": "completed", "label": "Completed" },
     { "value": "cancelled", "label": "Cancelled" },
-    { "value": "pending", "label": "Not completed" },
-    { "value": "never_effective", "label": "Never became effective" },
+    { "value": "never_effective", "label": "Never Took Effect" },
     { "value": "", "label": "Unknown" }
   ],
   "correctionTaskOptions": [
-    { "value": "none", "label": "No existing task" },
-    { "value": "pending", "label": "Pending" },
-    { "value": "in_progress", "label": "In progress" },
+    { "value": "none", "label": "No Correction Activity" },
+    { "value": "pending", "label": "Awaiting Action" },
+    { "value": "in_progress", "label": "In Progress" },
     { "value": "completed", "label": "Completed" },
-    { "value": "cancelled", "label": "Cancelled" },
     { "value": "", "label": "Unknown" }
   ],
   "evidenceQualityOptions": [
     { "value": "verified", "label": "Verified" },
-    { "value": "unverified", "label": "Unverified" },
-    { "value": "conflicting", "label": "Conflicting" },
-    { "value": "stale", "label": "Stale" },
+    { "value": "unverified", "label": "Not Yet Verified" },
+    { "value": "conflicting", "label": "Conflicting Information" },
+    { "value": "stale", "label": "Outdated" },
     { "value": "uncertain", "label": "Uncertain" },
+    { "value": "", "label": "Unknown" }
+  ],
+  "serviceActivityOptions": [
+    { "value": "true", "label": "Active" },
+    { "value": "false", "label": "Inactive" },
+    { "value": "unknown", "label": "Unknown" }
+  ],
+  "workflowDependencyOptions": [
+    { "value": "true", "label": "Yes — Affects Upcoming Work" },
+    { "value": "false", "label": "No — Does Not Affect Upcoming Work" },
+    { "value": "unknown", "label": "Unknown" }
+  ],
+  "changedFieldOptions": [
+    { "value": "legal_name", "label": "Legal Entity Name" },
     { "value": "", "label": "Unknown" }
   ]
 }

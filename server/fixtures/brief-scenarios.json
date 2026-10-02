@@ -1,0 +1,90 @@
+{
+  "confirmed-mismatch": {
+    "label": "Legal Record Updated, Managed Services Not Updated",
+    "briefCase": "01",
+    "description": "The legal name change is complete and has taken effect. Managed Services still uses the previous name, which is needed for upcoming work. No correction activity exists."
+  },
+  "already-current": {
+    "label": "Managed Services Already Updated",
+    "briefCase": "02",
+    "description": "The verified Managed Services record already contains Demo Entity Beta LLC, matching the current legal record."
+  },
+  "field-not-consumed": {
+    "label": "Change Does Not Affect Upcoming Work",
+    "briefCase": "03",
+    "description": "Managed Services still uses the previous name, but upcoming work does not depend on it. No current operational finding is supported."
+  },
+  "service-ended": {
+    "label": "Managed Service No Longer Active",
+    "briefCase": "04",
+    "description": "The Managed Service is no longer active. This review covers the service's upcoming work, not any separate legal obligations."
+  },
+  "change-cancelled": {
+    "label": "Legal Change Cancelled",
+    "briefCase": "05a",
+    "description": "The legal change was cancelled. It does not support a request to update the Managed Services record."
+  },
+  "never-effective": {
+    "label": "Legal Change Never Took Effect",
+    "briefCase": "05b",
+    "description": "The legal change had not taken effect as of the review date."
+  },
+  "missing-new-value": {
+    "label": "Current Legal Value Missing",
+    "briefCase": "06a",
+    "description": "The current legal name is missing. Confirm it before comparing the legal and Managed Services records."
+  },
+  "missing-completion-evidence": {
+    "label": "Legal Change Cannot Be Verified",
+    "briefCase": "06b",
+    "description": "Evidence confirming that the legal change was completed is missing. The stated change status alone is insufficient."
+  },
+  "identity-mismatch": {
+    "label": "Entity Match Cannot Be Confirmed",
+    "briefCase": "07",
+    "description": "The Managed Services record refers to a different legal entity. Similar names alone cannot confirm that the records belong to the same entity."
+  },
+  "stale-evidence": {
+    "label": "Available Evidence Is Outdated",
+    "briefCase": "08a",
+    "description": "The supplied legal record evidence is marked as outdated. Obtain current evidence before relying on it."
+  },
+  "conflicting-evidence": {
+    "label": "Sources Contain Conflicting Information",
+    "briefCase": "08b",
+    "description": "The supplied Managed Services evidence is marked as conflicting. Confirm the correct information before deciding whether a correction is needed."
+  },
+  "pending-owned-task": {
+    "label": "Correction Already In Progress",
+    "briefCase": "09",
+    "description": "An assigned owner is responsible for correcting this entity's name, with completion planned before upcoming work begins. The records still differ; monitor the existing correction."
+  },
+  "overdue-task": {
+    "label": "Correction Delayed, Review Needed",
+    "briefCase": "10",
+    "description": "The planned correction date has passed, and Managed Services still uses the previous name. Follow up with the assigned owner.",
+    "setupFixtureIds": ["pending-owned-task"],
+    "setupNote": "This scenario includes an earlier finding from when the correction was on track. The review updates that finding."
+  },
+  "replay-identical": {
+    "label": "Previously Reviewed Situation",
+    "briefCase": "11",
+    "description": "These facts have already been reviewed and remain unchanged. The existing finding is retained without a duplicate notification.",
+    "setupFixtureIds": ["replay-original"],
+    "setupNote": "This scenario includes the earlier finding so you can see how a repeated review is handled."
+  },
+  "replay-corrected": {
+    "label": "Managed Services Record Corrected",
+    "briefCase": "12",
+    "description": "Newer verified evidence confirms that Managed Services now uses the current name. The earlier finding is marked as no longer current, and the evidence history is retained.",
+    "setupFixtureIds": ["replay-original"],
+    "setupNote": "This scenario includes the earlier finding about the previous name. The review records the correction against that finding."
+  },
+  "similar-name-other-entity": {
+    "label": "Similar Entity, No Issue Found",
+    "briefCase": "Negative identity test",
+    "description": "A different legal entity with a similar name already has the correct Managed Services record. The other entity's finding does not apply to it.",
+    "setupFixtureIds": ["replay-original"],
+    "setupNote": "The other entity's finding remains in the history. This review concerns only the selected legal entity."
+  }
+}

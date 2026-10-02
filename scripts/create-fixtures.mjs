@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 
 // Fixture expectations are declared here, independently of the evaluator.
 const baseline = {
@@ -81,5 +81,10 @@ add('batch-second-entity', 'Second entity has its own supported mismatch', 'READ
   input.managedServices.evidenceReference = 'fixture://managed-services/DEMO-E003/v1';
   input.workflow.evidenceReference = 'fixture://workflow/DEMO-E003/032';
 }, 'replay');
+const briefScenarios = JSON.parse(await readFile(new URL('../server/fixtures/brief-scenarios.json', import.meta.url), 'utf8'));
+for (const scenario of scenarios) {
+  const brief = briefScenarios[scenario.id];
+  Object.assign(scenario, { briefCase: null, showInSelector: Boolean(brief), setupFixtureIds: [], setupNote: '' }, brief);
+}
 await writeFile(new URL('../server/fixtures/scenarios.json', import.meta.url), JSON.stringify(scenarios, null, 2) + '\n');
 console.log(`Wrote ${scenarios.length} synthetic fixtures.`);

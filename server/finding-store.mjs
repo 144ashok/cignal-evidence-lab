@@ -29,16 +29,24 @@ export function createFindingStore(file) {
   return {
     list: () => serial(async () => (await read()).findings),
     reset: () => serial(() => save({ schemaVersion: 1, findings: [] })),
-    evaluate: raw => serial(async () => {
+    evaluate: (raw, setupInputs = []) => serial(async () => {
       const state = await read();
+      // Add required earlier findings only when absent; replay never rewinds history.
+      for (const setupInput of setupInputs) {
+        const setupKey = logicalKeyFor(setupInput);
+        if (setupKey && !state.findings.some(item => item.logicalKey === setupKey)) {
+          const setupResult = evaluate(setupInput);
+          if (setupResult.findingId) state.findings.push(setupResult);
+        }
+      }
       const key = logicalKeyFor(raw);
       const index = key ? state.findings.findIndex(item => item.logicalKey === key) : -1;
       const result = evaluate(raw, index < 0 ? undefined : state.findings[index]);
       if (result.findingId) {
         if (index < 0) state.findings.push(result);
         else state.findings[index] = result;
-        await save(state);
       }
+      if (result.findingId || setupInputs.length) await save(state);
       return result;
     }),
   };

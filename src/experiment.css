@@ -19,3 +19,9 @@ th{font-weight:600;color:#64735f}
 .finding-meta{align-items:flex-start}
 button:disabled{cursor:wait;opacity:.6}
 fieldset:disabled{opacity:.7}
+.scenario-selection .scenario-bar{margin-bottom:8px}
+.scenario-selection .scenario-bar>select{width:min(520px,75%)}
+.scenario-details{margin-bottom:20px;color:#667762;font-size:11px;line-height:1.7}
+.scenario-details p{margin:5px 0}
+.scenario-expectation code{font-size:10px;overflow-wrap:anywhere}
+.field-help{color:#7c8977;font-size:10px;line-height:1.6;margin:0 0 14px}

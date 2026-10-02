@@ -27,4 +27,6 @@ The original prompt and the expanded brief describe the same KO #30 business pro
 
 Implementation choices requiring no integration: evidence quality is fixture-declared; times use UTC; the local state file is not a database server; the runner isolates independent scenario series. These are documented experiment conventions, not new CT-wide policies.
 
+The UI selector now directly maps to the brief's 12 tests and negative identity case, splitting the stated alternatives into 16 choices. Extra boundary tests remain outside the dropdown. Each selected case shows its specific description, expected initial result and any required prior-finding setup. Independent cases have isolated local histories; recurring evaluations of one case retain the same logical finding. All field options are supplied by Node from JSON and use the brief's legal-name example, task/evidence states and explicit unknown values.
+
 The brief's governance and independence requirements remain intact: no other repository or brand asset was edited, and no production credentials or customer information were used. The repository/folder and ZIP can be inspected independently of the main demo.

@@ -32,7 +32,7 @@ Reset local experiment and interactive finding state:
 npm run reset
 ```
 
-Stop the interactive server before using the reset command. To reset while the app runs, use **Reset local finding state** in the UI. Reset removes no fixture inputs or reports; it writes empty finding registries. The experiment runner always starts its own series with empty state for reproducible reports and leaves interactive history untouched.
+Stop the interactive server before using the reset command. To reset the selected case while the app runs, use **Reset this scenario’s history** in the UI. Reset removes no fixture inputs or reports; it writes empty finding registries. The experiment runner always starts its own series with empty state for reproducible reports and leaves interactive history untouched.
 
 ## Optional React interface
 
@@ -40,7 +40,7 @@ Stop the interactive server before using the reset command. To reset while the a
 npm run dev
 ```
 
-Open http://127.0.0.1:3000. Node owns the port, serves the local API and uses Vite middleware for React hot reload. Select a synthetic scenario, inspect or edit its structured facts, then click **Run evaluation**. Expanding the metadata sections exposes snapshot IDs, evidence, versions, observations and task ownership/targets. Blank and “Unknown” values remain unknown.
+Open http://127.0.0.1:3000. Node owns the port, serves the local API and uses Vite middleware for React hot reload. Select a demo scenario, inspect or edit its facts, then click **Review Information**. Expand the details to review legal entity references, supporting evidence, evidence update references, recorded dates and correction responsibilities. Blank and “Unknown” values remain unknown.
 
 For a built frontend served by Node without Vite:
 
@@ -53,7 +53,17 @@ npm start
 
 The three panels show supplied facts, observable checks and the evaluated finding. Findings show unresolved information, workflow timing, task and prior-finding links, retained evidence and emission disposition. Editing inputs does not silently change the evaluated snapshot. Local history survives reloads and server restarts.
 
-Independent UI scenarios share history by logical key. Reset history before evaluating an unrelated alternative for the same entity/change/workflow. For a replay sequence, keep the state: run **Original logical finding**, **Identical facts replayed**, **New snapshot resolves earlier finding**, then **Verified correction replayed**. The CLI automatically isolates independent series.
+The screen follows **Input Facts → Outcome Path → Finding**. The evaluation panel goes directly to pass/fail/unknown checks and highlighted decision points, without a separate explanatory workflow. The finding panel leads with a large status card: green review, amber evidence needed, blue existing work, or neutral no finding. Separate sections explain why, supporting evidence, missing evidence, the required human action, and the expected next step.
+
+These explanations are a presentation layer in `src/presentation/findingPresentation.ts`. It reads the evaluator's returned status, reason, checks and unresolved items; it does not select an outcome or change the rules. The “Supporting Evidence Confirmed” row exposes existing reported version/chronology failures, with unknown verification when evidence remains unresolved. Matching current values and reliable evidence are presented separately: an aligned-but-unverified record is never labelled as an ongoing value mismatch, while matching names across different entity IDs never imply resolution. Raw API responses and downloaded result JSON retain the evaluator's original output.
+
+The executive view uses “Review Summary,” “Records Refer To The Same Entity,” “Required Information Available,” “Upcoming Work Identified,” “Supporting Evidence Confirmed” and “What Was Compared.” Evidence badges read “Confirmed” or “Needs review,” using the same assessment conditions. `src/presentation/displayLabels.ts` supplies readable labels for known entity and workflow references. Distinct entities keep distinct labels; unfamiliar references remain visible as supplied. Exact references remain available in collapsed record, evidence and finding details, and the original legal entity reference remains editable. These display labels never determine identity or change submitted facts.
+
+The scenario dropdown contains the brief's 16 choices, including the stated alternatives and the similar-entity case. It uses business names such as “Legal Record Updated, Managed Services Not Updated” and “Correction Already In Progress,” without test numbering. Each choice has a business description and an expected first-run result. Fixture IDs, input facts and expected outcomes are unchanged; additional boundary and batch fixtures remain in automated tests and reports.
+
+Each selectable case has its own local history. For cases requiring an earlier finding—overdue work, duplicate replay, verified correction and the different-entity test—the displayed setup note explains which synthetic prior is recorded on the first evaluation. Existing history is never rewound automatically. Repeat **Review Information** to inspect duplicate suppression, or edit a newer snapshot to update the same finding. **Reset this scenario’s history** repeats that case from its declared starting state without clearing another case.
+
+All input dropdown choices are fetched from Node's local `fact-options.json`: legal name is the only defined changed field in the supplied example; completion, service activity, workflow dependency, task status and evidence quality keep unknown values explicit. The form uses business labels such as “Legal Entity,” “What Changed,” “Review Date” and “Existing Correction Activity.” Correction details are shown only when correction work may exist. Labels and option text are presentation only; internal property names and submitted option values remain unchanged. `server/fixtures/brief-scenarios.json` maintains the visible scenario names, descriptions and connection to the detailed brief; regenerate `scenarios.json` with `node scripts/create-fixtures.mjs` after editing that guide.
 
 ## Deliverables and comparison
 
@@ -78,6 +88,8 @@ All schemas and statuses are experiment conventions, not canonical CIGNAL schema
 
 POST requests use `Content-Type: application/json`. Invalid JSON returns HTTP 400; valid JSON with missing or uncertain facts returns `NEEDS_EVIDENCE`. No API changes fixture source records or sends messages. There is no database, authentication, external runtime API or AI/LLM call.
 
+The React app adds `?scenario=<fixture-id>` to evaluation, findings and reset requests. Node accepts only a selectable fixture ID and uses its isolated JSON history under `state/scenarios/`. Its declared setup fixtures are added only if the corresponding prior finding is absent. Requests without this parameter continue to use `state/findings.json`, without automatic setup. `GET /api/scenarios` includes the full test catalog; `showInSelector` selects the brief-only UI choices.
+
 ## Rules and assumptions
 
 1. Validate explicit identities, known values, source references, versions, quality and supplied UTC times. Missing/malformed facts, mismatched identities, future observations, stale/conflicting/unverified evidence and unexplained service values require evidence.
@@ -100,6 +112,7 @@ src/App.tsx                   UI state and page composition
 src/components/               Typed panels, fields, and layout components
 src/api/                      Local HTTP clients
 src/hooks/                    Fetch/loading/retry state
+src/presentation/             Business explanations and presentation tests
 src/types/experiment.ts       Input, evidence, task, finding and fixture types
 src/types/factOptions.ts      Dropdown response types
 src/domain/normalizeInput.ts  Unknown-preserving input normalization

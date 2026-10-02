@@ -13,11 +13,12 @@ interface SnapshotFieldsProps {
 export default function SnapshotFields({ label, snapshot, options, onChange }: SnapshotFieldsProps) {
   return (
     <details className="metadata-fields">
-      <summary>{label} evidence metadata</summary>
-      {(['entityId', 'field', 'evidenceReference', 'observedAt', 'version'] as const).map(key => (
-        <TextField key={key} label={key === 'observedAt' ? 'Observed at (UTC)' : key} value={snapshot[key] ?? ''} onChange={value => onChange({ ...snapshot, [key]: value || null })} />
+      <summary>{label} evidence details</summary>
+      {([{ key: 'entityId', label: 'Legal Entity on the Record' }, { key: 'field', label: 'Information Covered' }, { key: 'evidenceReference', label: 'Supporting Evidence' }, { key: 'observedAt', label: 'Evidence Recorded Date' }, { key: 'version', label: 'Evidence Update Reference' }] as const).map(({ key, label }) => (
+        <TextField key={key} label={label} value={snapshot[key] ?? ''} onChange={value => onChange({ ...snapshot, [key]: value || null })} />
       ))}
-      <SelectField label="Evidence quality" value={snapshot.evidenceQuality ?? ''} options={options.evidenceQualityOptions} onChange={value => onChange({ ...snapshot, evidenceQuality: value || null })} />
+      <SelectField label="Evidence Confidence" value={snapshot.evidenceQuality ?? ''} options={options.evidenceQualityOptions} onChange={value => onChange({ ...snapshot, evidenceQuality: value || null })} />
+      <p className="field-help">Confidence reflects the available evidence. Outdated or conflicting information needs review.</p>
     </details>
   );
 }

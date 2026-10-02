@@ -19,7 +19,7 @@ export function useFactOptions() {
       })
       .catch(() => {
         if (!controller.signal.aborted) {
-          setState({ status: 'error', message: 'Could not load fact options from the local server.' });
+          setState({ status: 'error', message: 'Review options could not be loaded. Please try again.' });
         }
       });
     return () => controller.abort();
