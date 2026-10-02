@@ -1,0 +1,1820 @@
+[
+  {
+    "id": "confirmed-mismatch",
+    "label": "Confirmed name mismatch",
+    "description": "Confirmed name mismatch",
+    "series": "confirmed-mismatch",
+    "expectedStatus": "READY_FOR_REVIEW",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "confirmed-mismatch",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "already-current",
+    "label": "Managed Services already current",
+    "description": "Managed Services already current",
+    "series": "already-current",
+    "expectedStatus": "NO_CURRENT_FINDING",
+    "expectedDisposition": "NO_NEW_NOTIFICATION",
+    "input": {
+      "fixtureId": "already-current",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "field-not-consumed",
+    "label": "Workflow does not consume field",
+    "description": "Workflow does not consume field",
+    "series": "field-not-consumed",
+    "expectedStatus": "NO_CURRENT_FINDING",
+    "expectedDisposition": "NO_NEW_NOTIFICATION",
+    "input": {
+      "fixtureId": "field-not-consumed",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "service-ended",
+    "label": "Relevant service ended",
+    "description": "Relevant service ended",
+    "series": "service-ended",
+    "expectedStatus": "NO_CURRENT_FINDING",
+    "expectedDisposition": "NO_NEW_NOTIFICATION",
+    "input": {
+      "fixtureId": "service-ended",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": false
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "change-cancelled",
+    "label": "Legal change cancelled",
+    "description": "Legal change cancelled",
+    "series": "change-cancelled",
+    "expectedStatus": "NO_CURRENT_FINDING",
+    "expectedDisposition": "NO_NEW_NOTIFICATION",
+    "input": {
+      "fixtureId": "change-cancelled",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "cancelled",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "never-effective",
+    "label": "Change never effective",
+    "description": "Change never effective",
+    "series": "never-effective",
+    "expectedStatus": "NO_CURRENT_FINDING",
+    "expectedDisposition": "NO_NEW_NOTIFICATION",
+    "input": {
+      "fixtureId": "never-effective",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "never_effective",
+        "effectiveAt": null,
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "future-effective",
+    "label": "Effective time is in the future",
+    "description": "Effective time is in the future",
+    "series": "future-effective",
+    "expectedStatus": "NO_CURRENT_FINDING",
+    "expectedDisposition": "NO_NEW_NOTIFICATION",
+    "input": {
+      "fixtureId": "future-effective",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-10-02T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "missing-new-value",
+    "label": "Required new value unknown",
+    "description": "Required new value unknown",
+    "series": "missing-new-value",
+    "expectedStatus": "NEEDS_EVIDENCE",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "missing-new-value",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": null,
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "missing-completion-evidence",
+    "label": "Completion evidence missing",
+    "description": "Completion evidence missing",
+    "series": "missing-completion-evidence",
+    "expectedStatus": "NEEDS_EVIDENCE",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "missing-completion-evidence",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": null,
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "identity-mismatch",
+    "label": "Source entity identifiers disagree",
+    "description": "Source entity identifiers disagree",
+    "series": "identity-mismatch",
+    "expectedStatus": "NEEDS_EVIDENCE",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "identity-mismatch",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E999",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "stale-evidence",
+    "label": "Evidence explicitly stale",
+    "description": "Evidence explicitly stale",
+    "series": "stale-evidence",
+    "expectedStatus": "NEEDS_EVIDENCE",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "stale-evidence",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "stale"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "conflicting-evidence",
+    "label": "Evidence explicitly conflicting",
+    "description": "Evidence explicitly conflicting",
+    "series": "conflicting-evidence",
+    "expectedStatus": "NEEDS_EVIDENCE",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "conflicting-evidence",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "conflicting"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "unverified-evidence",
+    "label": "Evidence not verified",
+    "description": "Evidence not verified",
+    "series": "unverified-evidence",
+    "expectedStatus": "NEEDS_EVIDENCE",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "unverified-evidence",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "unverified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "unknown-service",
+    "label": "Unknown is not inactive",
+    "description": "Unknown is not inactive",
+    "series": "unknown-service",
+    "expectedStatus": "NEEDS_EVIDENCE",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "unknown-service",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": null
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "pending-owned-task",
+    "label": "Matching owned task on track",
+    "description": "Matching owned task on track",
+    "series": "task-lifecycle",
+    "expectedStatus": "MONITOR_EXISTING_WORK",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "pending-owned-task",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": "DEMO-TASK-030",
+        "status": "pending",
+        "owner": "Managed Services owner (illustrative)",
+        "targetEntityId": "DEMO-E001",
+        "targetChangeId": "DEMO-CHANGE-030",
+        "targetField": "legal_name",
+        "plannedCompletionAt": "2026-10-03T00:00:00Z"
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "overdue-task",
+    "label": "Task overdue and mismatch remains",
+    "description": "Task overdue and mismatch remains",
+    "series": "task-lifecycle",
+    "expectedStatus": "READY_FOR_REVIEW",
+    "expectedDisposition": "UPDATE",
+    "input": {
+      "fixtureId": "overdue-task",
+      "asOf": "2026-10-04T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": "DEMO-TASK-030",
+        "status": "pending",
+        "owner": "Managed Services owner (illustrative)",
+        "targetEntityId": "DEMO-E001",
+        "targetChangeId": "DEMO-CHANGE-030",
+        "targetField": "legal_name",
+        "plannedCompletionAt": "2026-10-03T00:00:00Z"
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "task-correction-verified",
+    "label": "Task followed by verified correction",
+    "description": "Task followed by verified correction",
+    "series": "task-lifecycle",
+    "expectedStatus": "NO_CURRENT_FINDING",
+    "expectedDisposition": "UPDATE",
+    "input": {
+      "fixtureId": "task-correction-verified",
+      "asOf": "2026-10-06T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v2",
+        "observedAt": "2026-10-05T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": "DEMO-TASK-030",
+        "status": "completed",
+        "owner": "Managed Services owner (illustrative)",
+        "targetEntityId": "DEMO-E001",
+        "targetChangeId": "DEMO-CHANGE-030",
+        "targetField": "legal_name",
+        "plannedCompletionAt": "2026-10-03T00:00:00Z"
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "replay-original",
+    "label": "Original logical finding",
+    "description": "Original logical finding",
+    "series": "replay",
+    "expectedStatus": "READY_FOR_REVIEW",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "replay-original",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "replay-identical",
+    "label": "Identical facts replayed",
+    "description": "Identical facts replayed",
+    "series": "replay",
+    "expectedStatus": "READY_FOR_REVIEW",
+    "expectedDisposition": "NO_NEW_NOTIFICATION",
+    "input": {
+      "fixtureId": "replay-identical",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "replay-corrected",
+    "label": "New snapshot resolves earlier finding",
+    "description": "New snapshot resolves earlier finding",
+    "series": "replay",
+    "expectedStatus": "NO_CURRENT_FINDING",
+    "expectedDisposition": "UPDATE",
+    "input": {
+      "fixtureId": "replay-corrected",
+      "asOf": "2026-10-06T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v2",
+        "observedAt": "2026-10-05T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "replay-resolved-again",
+    "label": "Verified correction replayed",
+    "description": "Verified correction replayed",
+    "series": "replay",
+    "expectedStatus": "NO_CURRENT_FINDING",
+    "expectedDisposition": "NO_NEW_NOTIFICATION",
+    "input": {
+      "fixtureId": "replay-resolved-again",
+      "asOf": "2026-10-06T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v2",
+        "observedAt": "2026-10-05T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "similar-name-other-entity",
+    "label": "Similarly named different entity is current",
+    "description": "Similarly named different entity is current",
+    "series": "replay",
+    "expectedStatus": "NO_CURRENT_FINDING",
+    "expectedDisposition": "NO_NEW_NOTIFICATION",
+    "input": {
+      "fixtureId": "similar-name-other-entity",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E002",
+      "change": {
+        "eventId": "DEMO-CHANGE-031",
+        "entityId": "DEMO-E002",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E002/031",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E002",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E002/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E002",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E002/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E002",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-031",
+        "entityId": "DEMO-E002",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E002/031"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "task-unrelated",
+    "label": "Unrelated task cannot suppress finding",
+    "description": "Unrelated task cannot suppress finding",
+    "series": "task-unrelated",
+    "expectedStatus": "READY_FOR_REVIEW",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "task-unrelated",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": "DEMO-TASK-030",
+        "status": "pending",
+        "owner": "Managed Services owner (illustrative)",
+        "targetEntityId": "DEMO-E001",
+        "targetChangeId": "DEMO-OTHER-CHANGE",
+        "targetField": "legal_name",
+        "plannedCompletionAt": "2026-10-03T00:00:00Z"
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "task-unowned",
+    "label": "Matching task has no known owner",
+    "description": "Matching task has no known owner",
+    "series": "task-unowned",
+    "expectedStatus": "NEEDS_EVIDENCE",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "task-unowned",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": "DEMO-TASK-030",
+        "status": "pending",
+        "owner": null,
+        "targetEntityId": "DEMO-E001",
+        "targetChangeId": "DEMO-CHANGE-030",
+        "targetField": "legal_name",
+        "plannedCompletionAt": "2026-10-03T00:00:00Z"
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "task-completed-still-stale",
+    "label": "Task completed but record still stale",
+    "description": "Task completed but record still stale",
+    "series": "task-completed-still-stale",
+    "expectedStatus": "READY_FOR_REVIEW",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "task-completed-still-stale",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": "DEMO-TASK-030",
+        "status": "completed",
+        "owner": "Managed Services owner (illustrative)",
+        "targetEntityId": "DEMO-E001",
+        "targetChangeId": "DEMO-CHANGE-030",
+        "targetField": "legal_name",
+        "plannedCompletionAt": "2026-10-03T00:00:00Z"
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "task-after-preparation",
+    "label": "Task planned after workflow preparation",
+    "description": "Task planned after workflow preparation",
+    "series": "task-after-preparation",
+    "expectedStatus": "READY_FOR_REVIEW",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "task-after-preparation",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": "DEMO-TASK-030",
+        "status": "pending",
+        "owner": "Managed Services owner (illustrative)",
+        "targetEntityId": "DEMO-E001",
+        "targetChangeId": "DEMO-CHANGE-030",
+        "targetField": "legal_name",
+        "plannedCompletionAt": "2026-10-09T00:00:00Z"
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "future-observation",
+    "label": "Snapshot observed after evaluation",
+    "description": "Snapshot observed after evaluation",
+    "series": "future-observation",
+    "expectedStatus": "NEEDS_EVIDENCE",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "future-observation",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E001",
+      "change": {
+        "eventId": "DEMO-CHANGE-030",
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E001/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E001",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+        "observedAt": "2026-10-02T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E001",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  },
+  {
+    "id": "batch-second-entity",
+    "label": "Second entity has its own supported mismatch",
+    "description": "Second entity has its own supported mismatch",
+    "series": "replay",
+    "expectedStatus": "READY_FOR_REVIEW",
+    "expectedDisposition": "CREATE",
+    "input": {
+      "fixtureId": "batch-second-entity",
+      "asOf": "2026-10-01T00:00:00Z",
+      "entityId": "DEMO-E003",
+      "change": {
+        "eventId": "DEMO-CHANGE-032",
+        "entityId": "DEMO-E003",
+        "field": "legal_name",
+        "oldValue": "Demo Entity Alpha LLC",
+        "newValue": "Demo Entity Beta LLC",
+        "completionStatus": "completed",
+        "effectiveAt": "2026-09-22T00:00:00Z",
+        "completionEvidenceReference": "fixture://change/DEMO-E003/032",
+        "completionEvidenceQuality": "verified"
+      },
+      "legalRecord": {
+        "entityId": "DEMO-E003",
+        "field": "legal_name",
+        "value": "Demo Entity Beta LLC",
+        "evidenceReference": "fixture://legal/DEMO-E003/v2",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v2",
+        "evidenceQuality": "verified"
+      },
+      "managedServices": {
+        "entityId": "DEMO-E003",
+        "field": "legal_name",
+        "value": "Demo Entity Alpha LLC",
+        "evidenceReference": "fixture://managed-services/DEMO-E003/v1",
+        "observedAt": "2026-09-25T00:00:00Z",
+        "version": "v1",
+        "evidenceQuality": "verified"
+      },
+      "service": {
+        "entityId": "DEMO-E003",
+        "active": true
+      },
+      "workflow": {
+        "id": "DEMO-WORKFLOW-032",
+        "entityId": "DEMO-E003",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E003/032"
+      },
+      "updateTask": {
+        "id": null,
+        "status": "none",
+        "owner": null,
+        "targetEntityId": null,
+        "targetChangeId": null,
+        "targetField": null,
+        "plannedCompletionAt": null
+      },
+      "priorFindingId": null
+    }
+  }
+]

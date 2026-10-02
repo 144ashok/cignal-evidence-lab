@@ -1,0 +1,1309 @@
+{
+  "passed": true,
+  "first": [
+    {
+      "fixtureId": "confirmed-mismatch",
+      "findingId": "F-030-4a272e58a1a4416a0066",
+      "logicalKey": "[\"DEMO-E001\",\"DEMO-CHANGE-030\",\"legal_name\",\"DEMO-WORKFLOW-030\"]",
+      "entityId": "DEMO-E001",
+      "changedField": "legal_name",
+      "status": "READY_FOR_REVIEW",
+      "reason": "STALE_MANAGED_SERVICES_VALUE",
+      "explanation": "A completed, effective legal change is verified, the related service retains the old value, and an upcoming workflow consumes the field. No matching task is verified as on track.",
+      "input": {
+        "fixtureId": "confirmed-mismatch",
+        "asOf": "2026-10-01T00:00:00Z",
+        "entityId": "DEMO-E001",
+        "change": {
+          "eventId": "DEMO-CHANGE-030",
+          "entityId": "DEMO-E001",
+          "field": "legal_name",
+          "oldValue": "Demo Entity Alpha LLC",
+          "newValue": "Demo Entity Beta LLC",
+          "completionStatus": "completed",
+          "effectiveAt": "2026-09-22T00:00:00Z",
+          "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+          "completionEvidenceQuality": "verified"
+        },
+        "legalRecord": {
+          "entityId": "DEMO-E001",
+          "field": "legal_name",
+          "value": "Demo Entity Beta LLC",
+          "evidenceReference": "fixture://legal/DEMO-E001/v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v2",
+          "evidenceQuality": "verified"
+        },
+        "managedServices": {
+          "entityId": "DEMO-E001",
+          "field": "legal_name",
+          "value": "Demo Entity Alpha LLC",
+          "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v1",
+          "evidenceQuality": "verified"
+        },
+        "service": {
+          "entityId": "DEMO-E001",
+          "active": true
+        },
+        "workflow": {
+          "id": "DEMO-WORKFLOW-030",
+          "entityId": "DEMO-E001",
+          "consumesFields": [
+            "legal_name"
+          ],
+          "preparationAt": "2026-10-08T00:00:00Z",
+          "evidenceReference": "fixture://workflow/DEMO-E001/030"
+        },
+        "updateTask": {
+          "id": null,
+          "status": "none",
+          "owner": null,
+          "targetEntityId": null,
+          "targetChangeId": null,
+          "targetField": null,
+          "plannedCompletionAt": null
+        },
+        "priorFindingId": null
+      },
+      "checks": [
+        {
+          "name": "Evidence sufficient",
+          "passed": true,
+          "detail": "Required facts and fixture-declared evidence are verified; no evidence-age threshold is applied."
+        },
+        {
+          "name": "Entity identities match",
+          "passed": true,
+          "detail": "Compare explicit entity IDs across the event, snapshots, service and workflow; names are never join keys."
+        },
+        {
+          "name": "Legal change completed",
+          "passed": true,
+          "detail": "Supplied completion status: completed."
+        },
+        {
+          "name": "Legal Change Effective",
+          "passed": true,
+          "detail": "Effective: 2026-09-22T00:00:00Z; evaluation: 2026-10-01T00:00:00Z."
+        },
+        {
+          "name": "Legal Record Current",
+          "passed": true,
+          "detail": "Compare the legal snapshot value with the new legal value."
+        },
+        {
+          "name": "Service Active",
+          "passed": true,
+          "detail": "Relevant service active: true."
+        },
+        {
+          "name": "Workflow Uses Field",
+          "passed": true,
+          "detail": "Consumed fields: legal_name."
+        },
+        {
+          "name": "Workflow preparation upcoming",
+          "passed": true,
+          "detail": "Preparation: 2026-10-08T00:00:00Z; this is not a statutory deadline."
+        },
+        {
+          "name": "Managed Services Value Current",
+          "passed": false,
+          "detail": "Service snapshot still holds the old value."
+        },
+        {
+          "name": "Matching owned task on track",
+          "passed": false,
+          "detail": "No matching owned task is verified as on track before preparation."
+        }
+      ],
+      "evidence": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E001/030",
+          "entityId": "DEMO-E001",
+          "version": "DEMO-CHANGE-030",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E001/v2",
+          "entityId": "DEMO-E001",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E001/v1",
+          "entityId": "DEMO-E001",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Alpha LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E001/030",
+          "entityId": "DEMO-E001",
+          "version": "DEMO-WORKFLOW-030",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "evidenceHistory": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E001/030",
+          "entityId": "DEMO-E001",
+          "version": "DEMO-CHANGE-030",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E001/v2",
+          "entityId": "DEMO-E001",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E001/v1",
+          "entityId": "DEMO-E001",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Alpha LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E001/030",
+          "entityId": "DEMO-E001",
+          "version": "DEMO-WORKFLOW-030",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "unresolvedInformation": [],
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "owner": "Managed Services owner (illustrative)",
+      "action": "Ask the illustrative Managed Services owner to review the evidence and arrange or follow up the correction before workflow preparation. Verify the resulting snapshot.",
+      "links": {
+        "taskId": null,
+        "priorFindingId": null
+      },
+      "emissionDisposition": "CREATE",
+      "isCurrent": true,
+      "revision": 1,
+      "fingerprint": "579050f30935a8859c723c1b3fdc45f62b6e6fef566d49667fbb27d6b7cf166b",
+      "customer_communication_authorized": false,
+      "source_record_write_authorized": false
+    },
+    {
+      "fixtureId": "similar-name-other-entity",
+      "findingId": null,
+      "logicalKey": "[\"DEMO-E002\",\"DEMO-CHANGE-031\",\"legal_name\",\"DEMO-WORKFLOW-031\"]",
+      "entityId": "DEMO-E002",
+      "changedField": "legal_name",
+      "status": "NO_CURRENT_FINDING",
+      "reason": "RECORDS_ALIGNED",
+      "explanation": "The verified Managed Services snapshot holds the current legal value. Any earlier finding for this logical key is no longer current.",
+      "input": {
+        "fixtureId": "similar-name-other-entity",
+        "asOf": "2026-10-01T00:00:00Z",
+        "entityId": "DEMO-E002",
+        "change": {
+          "eventId": "DEMO-CHANGE-031",
+          "entityId": "DEMO-E002",
+          "field": "legal_name",
+          "oldValue": "Demo Entity Alpha LLC",
+          "newValue": "Demo Entity Beta LLC",
+          "completionStatus": "completed",
+          "effectiveAt": "2026-09-22T00:00:00Z",
+          "completionEvidenceReference": "fixture://change/DEMO-E002/031",
+          "completionEvidenceQuality": "verified"
+        },
+        "legalRecord": {
+          "entityId": "DEMO-E002",
+          "field": "legal_name",
+          "value": "Demo Entity Beta LLC",
+          "evidenceReference": "fixture://legal/DEMO-E002/v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v2",
+          "evidenceQuality": "verified"
+        },
+        "managedServices": {
+          "entityId": "DEMO-E002",
+          "field": "legal_name",
+          "value": "Demo Entity Beta LLC",
+          "evidenceReference": "fixture://managed-services/DEMO-E002/v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v1",
+          "evidenceQuality": "verified"
+        },
+        "service": {
+          "entityId": "DEMO-E002",
+          "active": true
+        },
+        "workflow": {
+          "id": "DEMO-WORKFLOW-031",
+          "entityId": "DEMO-E002",
+          "consumesFields": [
+            "legal_name"
+          ],
+          "preparationAt": "2026-10-08T00:00:00Z",
+          "evidenceReference": "fixture://workflow/DEMO-E002/031"
+        },
+        "updateTask": {
+          "id": null,
+          "status": "none",
+          "owner": null,
+          "targetEntityId": null,
+          "targetChangeId": null,
+          "targetField": null,
+          "plannedCompletionAt": null
+        },
+        "priorFindingId": null
+      },
+      "checks": [
+        {
+          "name": "Evidence sufficient",
+          "passed": true,
+          "detail": "Required facts and fixture-declared evidence are verified; no evidence-age threshold is applied."
+        },
+        {
+          "name": "Entity identities match",
+          "passed": true,
+          "detail": "Compare explicit entity IDs across the event, snapshots, service and workflow; names are never join keys."
+        },
+        {
+          "name": "Legal change completed",
+          "passed": true,
+          "detail": "Supplied completion status: completed."
+        },
+        {
+          "name": "Legal Change Effective",
+          "passed": true,
+          "detail": "Effective: 2026-09-22T00:00:00Z; evaluation: 2026-10-01T00:00:00Z."
+        },
+        {
+          "name": "Legal Record Current",
+          "passed": true,
+          "detail": "Compare the legal snapshot value with the new legal value."
+        },
+        {
+          "name": "Service Active",
+          "passed": true,
+          "detail": "Relevant service active: true."
+        },
+        {
+          "name": "Workflow Uses Field",
+          "passed": true,
+          "detail": "Consumed fields: legal_name."
+        },
+        {
+          "name": "Workflow preparation upcoming",
+          "passed": true,
+          "detail": "Preparation: 2026-10-08T00:00:00Z; this is not a statutory deadline."
+        },
+        {
+          "name": "Managed Services Value Current",
+          "passed": true,
+          "detail": "Service snapshot matches the new legal value."
+        },
+        {
+          "name": "Matching owned task on track",
+          "passed": false,
+          "detail": "No matching owned task is verified as on track before preparation."
+        }
+      ],
+      "evidence": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E002/031",
+          "entityId": "DEMO-E002",
+          "version": "DEMO-CHANGE-031",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E002/v2",
+          "entityId": "DEMO-E002",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E002/v1",
+          "entityId": "DEMO-E002",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E002/031",
+          "entityId": "DEMO-E002",
+          "version": "DEMO-WORKFLOW-031",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "evidenceHistory": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E002/031",
+          "entityId": "DEMO-E002",
+          "version": "DEMO-CHANGE-031",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E002/v2",
+          "entityId": "DEMO-E002",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E002/v1",
+          "entityId": "DEMO-E002",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E002/031",
+          "entityId": "DEMO-E002",
+          "version": "DEMO-WORKFLOW-031",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "unresolvedInformation": [],
+      "workflow": {
+        "id": "DEMO-WORKFLOW-031",
+        "entityId": "DEMO-E002",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E002/031"
+      },
+      "owner": "Managed Services owner (illustrative)",
+      "action": "No correction is recommended by this experiment. Retain the evidence and re-evaluate if the facts change.",
+      "links": {
+        "taskId": null,
+        "priorFindingId": null
+      },
+      "emissionDisposition": "NO_NEW_NOTIFICATION",
+      "isCurrent": false,
+      "revision": 0,
+      "fingerprint": "73761363ba2ad1f3cdbdf51cabcd983d4be498ebaa4b14b11636dd544ac978c6",
+      "customer_communication_authorized": false,
+      "source_record_write_authorized": false
+    },
+    {
+      "fixtureId": "batch-second-entity",
+      "findingId": "F-030-72a5b62aabbba257e874",
+      "logicalKey": "[\"DEMO-E003\",\"DEMO-CHANGE-032\",\"legal_name\",\"DEMO-WORKFLOW-032\"]",
+      "entityId": "DEMO-E003",
+      "changedField": "legal_name",
+      "status": "READY_FOR_REVIEW",
+      "reason": "STALE_MANAGED_SERVICES_VALUE",
+      "explanation": "A completed, effective legal change is verified, the related service retains the old value, and an upcoming workflow consumes the field. No matching task is verified as on track.",
+      "input": {
+        "fixtureId": "batch-second-entity",
+        "asOf": "2026-10-01T00:00:00Z",
+        "entityId": "DEMO-E003",
+        "change": {
+          "eventId": "DEMO-CHANGE-032",
+          "entityId": "DEMO-E003",
+          "field": "legal_name",
+          "oldValue": "Demo Entity Alpha LLC",
+          "newValue": "Demo Entity Beta LLC",
+          "completionStatus": "completed",
+          "effectiveAt": "2026-09-22T00:00:00Z",
+          "completionEvidenceReference": "fixture://change/DEMO-E003/032",
+          "completionEvidenceQuality": "verified"
+        },
+        "legalRecord": {
+          "entityId": "DEMO-E003",
+          "field": "legal_name",
+          "value": "Demo Entity Beta LLC",
+          "evidenceReference": "fixture://legal/DEMO-E003/v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v2",
+          "evidenceQuality": "verified"
+        },
+        "managedServices": {
+          "entityId": "DEMO-E003",
+          "field": "legal_name",
+          "value": "Demo Entity Alpha LLC",
+          "evidenceReference": "fixture://managed-services/DEMO-E003/v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v1",
+          "evidenceQuality": "verified"
+        },
+        "service": {
+          "entityId": "DEMO-E003",
+          "active": true
+        },
+        "workflow": {
+          "id": "DEMO-WORKFLOW-032",
+          "entityId": "DEMO-E003",
+          "consumesFields": [
+            "legal_name"
+          ],
+          "preparationAt": "2026-10-08T00:00:00Z",
+          "evidenceReference": "fixture://workflow/DEMO-E003/032"
+        },
+        "updateTask": {
+          "id": null,
+          "status": "none",
+          "owner": null,
+          "targetEntityId": null,
+          "targetChangeId": null,
+          "targetField": null,
+          "plannedCompletionAt": null
+        },
+        "priorFindingId": null
+      },
+      "checks": [
+        {
+          "name": "Evidence sufficient",
+          "passed": true,
+          "detail": "Required facts and fixture-declared evidence are verified; no evidence-age threshold is applied."
+        },
+        {
+          "name": "Entity identities match",
+          "passed": true,
+          "detail": "Compare explicit entity IDs across the event, snapshots, service and workflow; names are never join keys."
+        },
+        {
+          "name": "Legal change completed",
+          "passed": true,
+          "detail": "Supplied completion status: completed."
+        },
+        {
+          "name": "Legal Change Effective",
+          "passed": true,
+          "detail": "Effective: 2026-09-22T00:00:00Z; evaluation: 2026-10-01T00:00:00Z."
+        },
+        {
+          "name": "Legal Record Current",
+          "passed": true,
+          "detail": "Compare the legal snapshot value with the new legal value."
+        },
+        {
+          "name": "Service Active",
+          "passed": true,
+          "detail": "Relevant service active: true."
+        },
+        {
+          "name": "Workflow Uses Field",
+          "passed": true,
+          "detail": "Consumed fields: legal_name."
+        },
+        {
+          "name": "Workflow preparation upcoming",
+          "passed": true,
+          "detail": "Preparation: 2026-10-08T00:00:00Z; this is not a statutory deadline."
+        },
+        {
+          "name": "Managed Services Value Current",
+          "passed": false,
+          "detail": "Service snapshot still holds the old value."
+        },
+        {
+          "name": "Matching owned task on track",
+          "passed": false,
+          "detail": "No matching owned task is verified as on track before preparation."
+        }
+      ],
+      "evidence": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E003/032",
+          "entityId": "DEMO-E003",
+          "version": "DEMO-CHANGE-032",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E003/v2",
+          "entityId": "DEMO-E003",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E003/v1",
+          "entityId": "DEMO-E003",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Alpha LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E003/032",
+          "entityId": "DEMO-E003",
+          "version": "DEMO-WORKFLOW-032",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "evidenceHistory": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E003/032",
+          "entityId": "DEMO-E003",
+          "version": "DEMO-CHANGE-032",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E003/v2",
+          "entityId": "DEMO-E003",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E003/v1",
+          "entityId": "DEMO-E003",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Alpha LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E003/032",
+          "entityId": "DEMO-E003",
+          "version": "DEMO-WORKFLOW-032",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "unresolvedInformation": [],
+      "workflow": {
+        "id": "DEMO-WORKFLOW-032",
+        "entityId": "DEMO-E003",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E003/032"
+      },
+      "owner": "Managed Services owner (illustrative)",
+      "action": "Ask the illustrative Managed Services owner to review the evidence and arrange or follow up the correction before workflow preparation. Verify the resulting snapshot.",
+      "links": {
+        "taskId": null,
+        "priorFindingId": null
+      },
+      "emissionDisposition": "CREATE",
+      "isCurrent": true,
+      "revision": 1,
+      "fingerprint": "28848849fc9282c281d8e348970f8d327856f4d715d22bc13c2b165c06dc91d5",
+      "customer_communication_authorized": false,
+      "source_record_write_authorized": false
+    }
+  ],
+  "replay": [
+    {
+      "fixtureId": "confirmed-mismatch",
+      "findingId": "F-030-4a272e58a1a4416a0066",
+      "logicalKey": "[\"DEMO-E001\",\"DEMO-CHANGE-030\",\"legal_name\",\"DEMO-WORKFLOW-030\"]",
+      "entityId": "DEMO-E001",
+      "changedField": "legal_name",
+      "status": "READY_FOR_REVIEW",
+      "reason": "STALE_MANAGED_SERVICES_VALUE",
+      "explanation": "A completed, effective legal change is verified, the related service retains the old value, and an upcoming workflow consumes the field. No matching task is verified as on track.",
+      "input": {
+        "fixtureId": "confirmed-mismatch",
+        "asOf": "2026-10-01T00:00:00Z",
+        "entityId": "DEMO-E001",
+        "change": {
+          "eventId": "DEMO-CHANGE-030",
+          "entityId": "DEMO-E001",
+          "field": "legal_name",
+          "oldValue": "Demo Entity Alpha LLC",
+          "newValue": "Demo Entity Beta LLC",
+          "completionStatus": "completed",
+          "effectiveAt": "2026-09-22T00:00:00Z",
+          "completionEvidenceReference": "fixture://change/DEMO-E001/030",
+          "completionEvidenceQuality": "verified"
+        },
+        "legalRecord": {
+          "entityId": "DEMO-E001",
+          "field": "legal_name",
+          "value": "Demo Entity Beta LLC",
+          "evidenceReference": "fixture://legal/DEMO-E001/v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v2",
+          "evidenceQuality": "verified"
+        },
+        "managedServices": {
+          "entityId": "DEMO-E001",
+          "field": "legal_name",
+          "value": "Demo Entity Alpha LLC",
+          "evidenceReference": "fixture://managed-services/DEMO-E001/v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v1",
+          "evidenceQuality": "verified"
+        },
+        "service": {
+          "entityId": "DEMO-E001",
+          "active": true
+        },
+        "workflow": {
+          "id": "DEMO-WORKFLOW-030",
+          "entityId": "DEMO-E001",
+          "consumesFields": [
+            "legal_name"
+          ],
+          "preparationAt": "2026-10-08T00:00:00Z",
+          "evidenceReference": "fixture://workflow/DEMO-E001/030"
+        },
+        "updateTask": {
+          "id": null,
+          "status": "none",
+          "owner": null,
+          "targetEntityId": null,
+          "targetChangeId": null,
+          "targetField": null,
+          "plannedCompletionAt": null
+        },
+        "priorFindingId": null
+      },
+      "checks": [
+        {
+          "name": "Evidence sufficient",
+          "passed": true,
+          "detail": "Required facts and fixture-declared evidence are verified; no evidence-age threshold is applied."
+        },
+        {
+          "name": "Entity identities match",
+          "passed": true,
+          "detail": "Compare explicit entity IDs across the event, snapshots, service and workflow; names are never join keys."
+        },
+        {
+          "name": "Legal change completed",
+          "passed": true,
+          "detail": "Supplied completion status: completed."
+        },
+        {
+          "name": "Legal Change Effective",
+          "passed": true,
+          "detail": "Effective: 2026-09-22T00:00:00Z; evaluation: 2026-10-01T00:00:00Z."
+        },
+        {
+          "name": "Legal Record Current",
+          "passed": true,
+          "detail": "Compare the legal snapshot value with the new legal value."
+        },
+        {
+          "name": "Service Active",
+          "passed": true,
+          "detail": "Relevant service active: true."
+        },
+        {
+          "name": "Workflow Uses Field",
+          "passed": true,
+          "detail": "Consumed fields: legal_name."
+        },
+        {
+          "name": "Workflow preparation upcoming",
+          "passed": true,
+          "detail": "Preparation: 2026-10-08T00:00:00Z; this is not a statutory deadline."
+        },
+        {
+          "name": "Managed Services Value Current",
+          "passed": false,
+          "detail": "Service snapshot still holds the old value."
+        },
+        {
+          "name": "Matching owned task on track",
+          "passed": false,
+          "detail": "No matching owned task is verified as on track before preparation."
+        }
+      ],
+      "evidence": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E001/030",
+          "entityId": "DEMO-E001",
+          "version": "DEMO-CHANGE-030",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E001/v2",
+          "entityId": "DEMO-E001",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E001/v1",
+          "entityId": "DEMO-E001",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Alpha LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E001/030",
+          "entityId": "DEMO-E001",
+          "version": "DEMO-WORKFLOW-030",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "evidenceHistory": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E001/030",
+          "entityId": "DEMO-E001",
+          "version": "DEMO-CHANGE-030",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E001/v2",
+          "entityId": "DEMO-E001",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E001/v1",
+          "entityId": "DEMO-E001",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Alpha LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E001/030",
+          "entityId": "DEMO-E001",
+          "version": "DEMO-WORKFLOW-030",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "unresolvedInformation": [],
+      "workflow": {
+        "id": "DEMO-WORKFLOW-030",
+        "entityId": "DEMO-E001",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E001/030"
+      },
+      "owner": "Managed Services owner (illustrative)",
+      "action": "Ask the illustrative Managed Services owner to review the evidence and arrange or follow up the correction before workflow preparation. Verify the resulting snapshot.",
+      "links": {
+        "taskId": null,
+        "priorFindingId": "F-030-4a272e58a1a4416a0066"
+      },
+      "emissionDisposition": "NO_NEW_NOTIFICATION",
+      "isCurrent": true,
+      "revision": 1,
+      "fingerprint": "579050f30935a8859c723c1b3fdc45f62b6e6fef566d49667fbb27d6b7cf166b",
+      "customer_communication_authorized": false,
+      "source_record_write_authorized": false
+    },
+    {
+      "fixtureId": "similar-name-other-entity",
+      "findingId": null,
+      "logicalKey": "[\"DEMO-E002\",\"DEMO-CHANGE-031\",\"legal_name\",\"DEMO-WORKFLOW-031\"]",
+      "entityId": "DEMO-E002",
+      "changedField": "legal_name",
+      "status": "NO_CURRENT_FINDING",
+      "reason": "RECORDS_ALIGNED",
+      "explanation": "The verified Managed Services snapshot holds the current legal value. Any earlier finding for this logical key is no longer current.",
+      "input": {
+        "fixtureId": "similar-name-other-entity",
+        "asOf": "2026-10-01T00:00:00Z",
+        "entityId": "DEMO-E002",
+        "change": {
+          "eventId": "DEMO-CHANGE-031",
+          "entityId": "DEMO-E002",
+          "field": "legal_name",
+          "oldValue": "Demo Entity Alpha LLC",
+          "newValue": "Demo Entity Beta LLC",
+          "completionStatus": "completed",
+          "effectiveAt": "2026-09-22T00:00:00Z",
+          "completionEvidenceReference": "fixture://change/DEMO-E002/031",
+          "completionEvidenceQuality": "verified"
+        },
+        "legalRecord": {
+          "entityId": "DEMO-E002",
+          "field": "legal_name",
+          "value": "Demo Entity Beta LLC",
+          "evidenceReference": "fixture://legal/DEMO-E002/v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v2",
+          "evidenceQuality": "verified"
+        },
+        "managedServices": {
+          "entityId": "DEMO-E002",
+          "field": "legal_name",
+          "value": "Demo Entity Beta LLC",
+          "evidenceReference": "fixture://managed-services/DEMO-E002/v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v1",
+          "evidenceQuality": "verified"
+        },
+        "service": {
+          "entityId": "DEMO-E002",
+          "active": true
+        },
+        "workflow": {
+          "id": "DEMO-WORKFLOW-031",
+          "entityId": "DEMO-E002",
+          "consumesFields": [
+            "legal_name"
+          ],
+          "preparationAt": "2026-10-08T00:00:00Z",
+          "evidenceReference": "fixture://workflow/DEMO-E002/031"
+        },
+        "updateTask": {
+          "id": null,
+          "status": "none",
+          "owner": null,
+          "targetEntityId": null,
+          "targetChangeId": null,
+          "targetField": null,
+          "plannedCompletionAt": null
+        },
+        "priorFindingId": null
+      },
+      "checks": [
+        {
+          "name": "Evidence sufficient",
+          "passed": true,
+          "detail": "Required facts and fixture-declared evidence are verified; no evidence-age threshold is applied."
+        },
+        {
+          "name": "Entity identities match",
+          "passed": true,
+          "detail": "Compare explicit entity IDs across the event, snapshots, service and workflow; names are never join keys."
+        },
+        {
+          "name": "Legal change completed",
+          "passed": true,
+          "detail": "Supplied completion status: completed."
+        },
+        {
+          "name": "Legal Change Effective",
+          "passed": true,
+          "detail": "Effective: 2026-09-22T00:00:00Z; evaluation: 2026-10-01T00:00:00Z."
+        },
+        {
+          "name": "Legal Record Current",
+          "passed": true,
+          "detail": "Compare the legal snapshot value with the new legal value."
+        },
+        {
+          "name": "Service Active",
+          "passed": true,
+          "detail": "Relevant service active: true."
+        },
+        {
+          "name": "Workflow Uses Field",
+          "passed": true,
+          "detail": "Consumed fields: legal_name."
+        },
+        {
+          "name": "Workflow preparation upcoming",
+          "passed": true,
+          "detail": "Preparation: 2026-10-08T00:00:00Z; this is not a statutory deadline."
+        },
+        {
+          "name": "Managed Services Value Current",
+          "passed": true,
+          "detail": "Service snapshot matches the new legal value."
+        },
+        {
+          "name": "Matching owned task on track",
+          "passed": false,
+          "detail": "No matching owned task is verified as on track before preparation."
+        }
+      ],
+      "evidence": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E002/031",
+          "entityId": "DEMO-E002",
+          "version": "DEMO-CHANGE-031",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E002/v2",
+          "entityId": "DEMO-E002",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E002/v1",
+          "entityId": "DEMO-E002",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E002/031",
+          "entityId": "DEMO-E002",
+          "version": "DEMO-WORKFLOW-031",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "evidenceHistory": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E002/031",
+          "entityId": "DEMO-E002",
+          "version": "DEMO-CHANGE-031",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E002/v2",
+          "entityId": "DEMO-E002",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E002/v1",
+          "entityId": "DEMO-E002",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E002/031",
+          "entityId": "DEMO-E002",
+          "version": "DEMO-WORKFLOW-031",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "unresolvedInformation": [],
+      "workflow": {
+        "id": "DEMO-WORKFLOW-031",
+        "entityId": "DEMO-E002",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E002/031"
+      },
+      "owner": "Managed Services owner (illustrative)",
+      "action": "No correction is recommended by this experiment. Retain the evidence and re-evaluate if the facts change.",
+      "links": {
+        "taskId": null,
+        "priorFindingId": null
+      },
+      "emissionDisposition": "NO_NEW_NOTIFICATION",
+      "isCurrent": false,
+      "revision": 0,
+      "fingerprint": "73761363ba2ad1f3cdbdf51cabcd983d4be498ebaa4b14b11636dd544ac978c6",
+      "customer_communication_authorized": false,
+      "source_record_write_authorized": false
+    },
+    {
+      "fixtureId": "batch-second-entity",
+      "findingId": "F-030-72a5b62aabbba257e874",
+      "logicalKey": "[\"DEMO-E003\",\"DEMO-CHANGE-032\",\"legal_name\",\"DEMO-WORKFLOW-032\"]",
+      "entityId": "DEMO-E003",
+      "changedField": "legal_name",
+      "status": "READY_FOR_REVIEW",
+      "reason": "STALE_MANAGED_SERVICES_VALUE",
+      "explanation": "A completed, effective legal change is verified, the related service retains the old value, and an upcoming workflow consumes the field. No matching task is verified as on track.",
+      "input": {
+        "fixtureId": "batch-second-entity",
+        "asOf": "2026-10-01T00:00:00Z",
+        "entityId": "DEMO-E003",
+        "change": {
+          "eventId": "DEMO-CHANGE-032",
+          "entityId": "DEMO-E003",
+          "field": "legal_name",
+          "oldValue": "Demo Entity Alpha LLC",
+          "newValue": "Demo Entity Beta LLC",
+          "completionStatus": "completed",
+          "effectiveAt": "2026-09-22T00:00:00Z",
+          "completionEvidenceReference": "fixture://change/DEMO-E003/032",
+          "completionEvidenceQuality": "verified"
+        },
+        "legalRecord": {
+          "entityId": "DEMO-E003",
+          "field": "legal_name",
+          "value": "Demo Entity Beta LLC",
+          "evidenceReference": "fixture://legal/DEMO-E003/v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v2",
+          "evidenceQuality": "verified"
+        },
+        "managedServices": {
+          "entityId": "DEMO-E003",
+          "field": "legal_name",
+          "value": "Demo Entity Alpha LLC",
+          "evidenceReference": "fixture://managed-services/DEMO-E003/v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "version": "v1",
+          "evidenceQuality": "verified"
+        },
+        "service": {
+          "entityId": "DEMO-E003",
+          "active": true
+        },
+        "workflow": {
+          "id": "DEMO-WORKFLOW-032",
+          "entityId": "DEMO-E003",
+          "consumesFields": [
+            "legal_name"
+          ],
+          "preparationAt": "2026-10-08T00:00:00Z",
+          "evidenceReference": "fixture://workflow/DEMO-E003/032"
+        },
+        "updateTask": {
+          "id": null,
+          "status": "none",
+          "owner": null,
+          "targetEntityId": null,
+          "targetChangeId": null,
+          "targetField": null,
+          "plannedCompletionAt": null
+        },
+        "priorFindingId": null
+      },
+      "checks": [
+        {
+          "name": "Evidence sufficient",
+          "passed": true,
+          "detail": "Required facts and fixture-declared evidence are verified; no evidence-age threshold is applied."
+        },
+        {
+          "name": "Entity identities match",
+          "passed": true,
+          "detail": "Compare explicit entity IDs across the event, snapshots, service and workflow; names are never join keys."
+        },
+        {
+          "name": "Legal change completed",
+          "passed": true,
+          "detail": "Supplied completion status: completed."
+        },
+        {
+          "name": "Legal Change Effective",
+          "passed": true,
+          "detail": "Effective: 2026-09-22T00:00:00Z; evaluation: 2026-10-01T00:00:00Z."
+        },
+        {
+          "name": "Legal Record Current",
+          "passed": true,
+          "detail": "Compare the legal snapshot value with the new legal value."
+        },
+        {
+          "name": "Service Active",
+          "passed": true,
+          "detail": "Relevant service active: true."
+        },
+        {
+          "name": "Workflow Uses Field",
+          "passed": true,
+          "detail": "Consumed fields: legal_name."
+        },
+        {
+          "name": "Workflow preparation upcoming",
+          "passed": true,
+          "detail": "Preparation: 2026-10-08T00:00:00Z; this is not a statutory deadline."
+        },
+        {
+          "name": "Managed Services Value Current",
+          "passed": false,
+          "detail": "Service snapshot still holds the old value."
+        },
+        {
+          "name": "Matching owned task on track",
+          "passed": false,
+          "detail": "No matching owned task is verified as on track before preparation."
+        }
+      ],
+      "evidence": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E003/032",
+          "entityId": "DEMO-E003",
+          "version": "DEMO-CHANGE-032",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E003/v2",
+          "entityId": "DEMO-E003",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E003/v1",
+          "entityId": "DEMO-E003",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Alpha LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E003/032",
+          "entityId": "DEMO-E003",
+          "version": "DEMO-WORKFLOW-032",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "evidenceHistory": [
+        {
+          "source": "Legal completion",
+          "reference": "fixture://change/DEMO-E003/032",
+          "entityId": "DEMO-E003",
+          "version": "DEMO-CHANGE-032",
+          "observedAt": "2026-09-22T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Legal record",
+          "reference": "fixture://legal/DEMO-E003/v2",
+          "entityId": "DEMO-E003",
+          "version": "v2",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Beta LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Managed Services",
+          "reference": "fixture://managed-services/DEMO-E003/v1",
+          "entityId": "DEMO-E003",
+          "version": "v1",
+          "observedAt": "2026-09-25T00:00:00Z",
+          "value": "Demo Entity Alpha LLC",
+          "quality": "verified"
+        },
+        {
+          "source": "Workflow dependency",
+          "reference": "fixture://workflow/DEMO-E003/032",
+          "entityId": "DEMO-E003",
+          "version": "DEMO-WORKFLOW-032",
+          "observedAt": null,
+          "value": "legal_name",
+          "quality": null
+        }
+      ],
+      "unresolvedInformation": [],
+      "workflow": {
+        "id": "DEMO-WORKFLOW-032",
+        "entityId": "DEMO-E003",
+        "consumesFields": [
+          "legal_name"
+        ],
+        "preparationAt": "2026-10-08T00:00:00Z",
+        "evidenceReference": "fixture://workflow/DEMO-E003/032"
+      },
+      "owner": "Managed Services owner (illustrative)",
+      "action": "Ask the illustrative Managed Services owner to review the evidence and arrange or follow up the correction before workflow preparation. Verify the resulting snapshot.",
+      "links": {
+        "taskId": null,
+        "priorFindingId": "F-030-72a5b62aabbba257e874"
+      },
+      "emissionDisposition": "NO_NEW_NOTIFICATION",
+      "isCurrent": true,
+      "revision": 1,
+      "fingerprint": "28848849fc9282c281d8e348970f8d327856f4d715d22bc13c2b165c06dc91d5",
+      "customer_communication_authorized": false,
+      "source_record_write_authorized": false
+    }
+  ]
+}
